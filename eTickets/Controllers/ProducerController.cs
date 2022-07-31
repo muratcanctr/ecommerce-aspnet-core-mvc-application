@@ -1,4 +1,5 @@
 ﻿using eTickets.Data;
+using eTickets.Data.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,16 +7,16 @@ namespace eTickets.Controllers
 {
     public class ProducerController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly IProducersService _service;
 
-        public ProducerController(AppDbContext context)
+        public ProducerController(IProducersService service)
         {
-            _context = context;
+            _service = service;
         }
         public async Task<IActionResult> Index()
         {
-            var allProducers = await _context.Producers.ToListAsync();
-            return View(allProducers);
+            var allProducer = await _service.GetAll();
+            return View(allProducer);
         }
     }
 }
