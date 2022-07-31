@@ -1,7 +1,7 @@
-﻿@model IEnumerable<Producer>
+﻿@model IEnumerable<Cinema>
 
 @{
-    ViewData["Title"] = "List Of Producers";
+    ViewData["Title"] = "List Of Cinemas";
 }
 
 <div class="row">
@@ -9,9 +9,9 @@
         <table class="table">
                 <thead>
                     <tr>
-                        <th>@Html.DisplayNameFor(model => model.ProfilePictureURL)</th>
-                        <th>@Html.DisplayNameFor(model => model.FullName)</th>
-                        <th>@Html.DisplayNameFor(model => model.Bio)</th>
+                        <th>@Html.DisplayNameFor(model => model.Logo)</th>
+                        <th>@Html.DisplayNameFor(model => model.Name)</th>
+                        <th>@Html.DisplayNameFor(model => model.Description)</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -20,17 +20,16 @@
                 {
                     <tr>
                         <td class="align-middle">
-                            <img class="rounded-circle" src="@item.ProfilePictureURL" alt="@item.FullName" style="max-width:150px" />
+                            <img class="rounded-circle" src="@item.Logo" alt="@item.Name" style="max-width:150px" />
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.FullName)
+                            @Html.DisplayFor(modelItem => item.Name)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Bio)
+                            @Html.DisplayFor(modelItem => item.Description)
                         </td>
                         <td>
-                            <a class="btn btn-outline-primary"><i class="bi bi-pencil-square">Edit</i></a>
-                            <a class="btn btn-outline-primary"><i class="bi bi-eye">Details</i></a>
+                            <a class="btn btn-outline-primary"><i class="bi bi-pencil-square">Edit</i></a>                           
                             <a class="btn btn-danger"><i class="bi bi-trash-square">Delete</i></a>
                         </td>
                     </tr>
