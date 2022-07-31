@@ -17,6 +17,12 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
+DefaultFilesOptions options = new DefaultFilesOptions();
+options.DefaultFileNames.Clear();
+options.DefaultFileNames.Add("Movie");
+app.UseDefaultFiles(options);
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
