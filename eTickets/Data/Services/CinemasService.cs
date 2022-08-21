@@ -1,32 +1,46 @@
 ﻿using eTickets.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace eTickets.Data.Services
 {
     public class CinemasService : ICinemasService
     {
-        public void Add(int CinemaId)
+        private readonly AppDbContext _context;
+        public CinemasService(AppDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+        public async Task AddAsync(Cinema cinema)
+        {
+            await _context.Cinemas.AddAsync(cinema);
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(int CinemaId)
+        public async Task DeleteAsync(int CinemaId)
         {
-            throw new NotImplementedException();
+            var result = await _context.Cinemas.FirstOrDefaultAsync(n => n.CinemaId == CinemaId);
+            _context.Cinemas.Remove(result);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<IEnumerable<Cinema>> GetAll()
+        public async Task<IEnumerable<Cinema>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var result = await _context.Cinemas.ToListAsync();
+            return result;
         }
 
-        public Cinema GetById(int CinemaId)
+        public async Task<Cinema> GetByIdAsync(int CinemaId)
         {
-            throw new NotImplementedException();
+            var result = await _context.Cinemas.FirstOrDefaultAsync(n => n.CinemaId == CinemaId);
+            return result;
         }
 
-        public Actor Update(int CinemaId, Actor newCinema)
+        public async Task<Cinema> UpdateAsync(int CinemaId, Cinema newCinema)
         {
-            throw new NotImplementedException();
+            _context.Update(newCinema);
+            await _context.SaveChangesAsync();
+            return newCinema;
         }
+       
     }
 }

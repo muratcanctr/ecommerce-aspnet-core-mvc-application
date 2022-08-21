@@ -29,12 +29,16 @@
                             @Html.DisplayFor(modelItem => item.Description)
                         </td>
                         <td>
-                            <a class="btn btn-outline-primary"><i class="bi bi-pencil-square">Edit</i></a>                           
-                            <a class="btn btn-danger"><i class="bi bi-trash-square">Delete</i></a>
+                            <a class="btn btn-outline-primary" asp-action="Edit" asp-route-CinemaId="@item.CinemaId"><i class="bi bi-pencil-square">Edit</i></a>
+                            <a class="btn btn-outline-primary" asp-action="Details" asp-route-CinemaId="@item.CinemaId"><i class="bi bi-eye" >Details</i></a>
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-CinemaId="@item.CinemaId"><i class="bi bi-trash-square">Delete</i></a>
                         </td>
                     </tr>
                 }
                 </tbody>
         </table>
     </div>
+</div>
+<div class="text-white" style="position:fixed; right:25px; bottom:25px;">
+    <a asp-contorller="Cinema" asp-action="Create" class="btn btn-success"><i class="bi bi-plus-circle">Add New</i></a>
 </div>
