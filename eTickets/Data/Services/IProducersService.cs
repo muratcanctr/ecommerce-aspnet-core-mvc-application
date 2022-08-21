@@ -4,11 +4,11 @@ namespace eTickets.Data.Services
 {
     public interface IProducersService
     {
-        Task<IEnumerable<Producer>> GetAll();
+        Task<IEnumerable<Producer>> GetAllAsync();
 
-        Producer GetById(int ProducerId);
-        void Add(int ProducerId);
-        Producer Update(int ProducerId, Producer newProducer);
-        void Delete(int ProducerId);
+        Task<Producer> GetByIdAsync(int ProducerId);
+        Task AddAsync(Producer producer);
+        Task<Producer> UpdateAsync(int ProducerId, Producer newProducer);
+        Task DeleteAsync(int ProducerId);
     }
 }

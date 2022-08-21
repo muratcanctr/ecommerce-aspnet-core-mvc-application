@@ -1,32 +1,46 @@
 ﻿using eTickets.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace eTickets.Data.Services
 {
     public class ProducersService : IProducersService
     {
-        public void Add(int ProducerId)
+        private readonly AppDbContext _context;
+
+        public ProducersService(AppDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+        public async Task AddAsync(Producer producer)
+        {
+            await _context.Producers.AddAsync(producer);
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(int ProducerId)
+        public async Task DeleteAsync(int ProducerId)
         {
-            throw new NotImplementedException();
+            var result = await _context.Producers.FirstOrDefaultAsync(n => n.ProducerId == ProducerId);
+            _context.Producers.Remove(result);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<IEnumerable<Producer>> GetAll()
+        public async Task<IEnumerable<Producer>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var result = await _context.Producers.ToListAsync();
+            return result;
         }
 
-        public Producer GetById(int ProducerId)
+        public async Task<Producer> GetByIdAsync(int ProducerId)
         {
-            throw new NotImplementedException();
+            var result = await _context.Producers.FirstOrDefaultAsync(n => n.ProducerId == ProducerId);
+            return result;
         }
 
-        public Producer Update(int ProducerId, Producer newProducer)
+        public async Task<Producer> UpdateAsync(int ProducerId, Producer newProducer)
         {
-            throw new NotImplementedException();
+            _context.Update(newProducer);
+            await _context.SaveChangesAsync();
+            return newProducer;
         }
     }
 }
