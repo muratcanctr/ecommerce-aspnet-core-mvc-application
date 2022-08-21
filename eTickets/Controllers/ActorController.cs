@@ -44,14 +44,14 @@ namespace eTickets.Controllers
         {
             var actorDetails = await _service.GetByIdAsync(ActorId);
 
-            if (actorDetails == null) return View();
+            if (actorDetails == null) return View("NotFound");
             return View(actorDetails);
         }
         //Get: Actor/Edit
         public async Task<IActionResult> Edit(int ActorId)
         {
             var actorDetails = await _service.GetByIdAsync(ActorId);
-            if (actorDetails == null) return View();
+            if (actorDetails == null) return View("NotFound");
             return View(actorDetails);
         }
 
@@ -70,7 +70,7 @@ namespace eTickets.Controllers
         public async Task<IActionResult> Delete(int ActorId)
         {
             var actorDetails = await _service.GetByIdAsync(ActorId);
-            if (actorDetails == null) return View();
+            if (actorDetails == null) return View("NotFound");
             return View(actorDetails);
         }
 
